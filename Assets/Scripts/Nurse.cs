@@ -5,7 +5,7 @@ using UnityEngine;
 public class Nurse : Agent
 {
     // Start is called before the first frame update
-    public void Start()
+    new void Start()
     {
         base.Start();
         SubGoal s1 = new SubGoal("treatPatient", 1, true);

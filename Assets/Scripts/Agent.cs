@@ -20,6 +20,7 @@ public class Agent : MonoBehaviour
 {
     public List<Action> actions = new List<Action>();
     public Dictionary<SubGoal, int> goals = new Dictionary<SubGoal, int>();
+    public Inventory inventory = new Inventory();
     public WorldStates beliefs = new WorldStates();
     public float distanceToTargetThreshold = 1f;
 
@@ -68,7 +69,7 @@ public class Agent : MonoBehaviour
 
             foreach(KeyValuePair<SubGoal, int> sg in sortedGoals)
             {
-                actionQueue = planner.Plan(actions, sg.Key.subGoals, null); // trying to create a plan for the most important goal
+                actionQueue = planner.Plan(actions, sg.Key.subGoals, beliefs); // trying to create a plan for the most important goal
                 if(actionQueue != null)
                 {
                     currentGoal = sg.Key;

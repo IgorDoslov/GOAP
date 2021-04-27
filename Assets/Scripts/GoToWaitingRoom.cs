@@ -13,6 +13,7 @@ public class GoToWaitingRoom : Action
     {
         World.Instance.GetWorld().ModifyState("Waiting", 1);
         World.Instance.AddPatient(this.gameObject);
+        beliefs.ModifyState("atHospital", 1);
         return true;
     }
 }

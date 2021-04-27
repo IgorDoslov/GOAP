@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 92789678}
   m_Layer: 0
   m_Name: Cubicle (3)
-  m_TagString: Untagged
+  m_TagString: Cubicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 418736458}
   - component: {fileID: 418736461}
   - component: {fileID: 418736460}
+  - component: {fileID: 418736462}
   m_Layer: 0
   m_Name: Patient
   m_TagString: Patient
@@ -504,13 +505,38 @@ MonoBehaviour:
   cost: 1
   target: {fileID: 0}
   targetTag: Reception
-  duration: 5
+  duration: 3
   preConditions:
   - key: hasArrived
     value: 0
   afterEffects:
   - key: Registered
     value: 1
+  navAgent: {fileID: 0}
+  running: 0
+--- !u!114 &418736462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418736453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb59f391a2465a4bbc63f5e6e467ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Get Treated
+  cost: 1
+  target: {fileID: 0}
+  targetTag: 
+  duration: 0
+  preConditions:
+  - key: atHospital
+    value: 0
+  afterEffects:
+  - key: isTreated
+    value: 0
   navAgent: {fileID: 0}
   running: 0
 --- !u!1 &437791403
@@ -1152,6 +1178,7 @@ GameObject:
   - component: {fileID: 1472624427}
   - component: {fileID: 1472624432}
   - component: {fileID: 1472624431}
+  - component: {fileID: 1472624434}
   - component: {fileID: 1472624433}
   m_Layer: 0
   m_Name: Nurse
@@ -1257,8 +1284,10 @@ MonoBehaviour:
   preConditions:
   - key: Waiting
     value: 1
+  - key: FreeCubicle
+    value: 1
   afterEffects:
-  - key: treatPatient
+  - key: PickedUpPatient
     value: 1
   navAgent: {fileID: 0}
   running: 0
@@ -1287,7 +1316,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1299,6 +1328,31 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1472624434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472624426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8125f9d7082999b498d36c813429c85a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Go To Cubicle
+  cost: 1
+  target: {fileID: 0}
+  targetTag: 
+  duration: 0
+  preConditions:
+  - key: PickedUpPatient
+    value: 0
+  afterEffects:
+  - key: treatPatient
+    value: 0
+  navAgent: {fileID: 0}
+  running: 0
 --- !u!1 &1582474733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,7 +1367,7 @@ GameObject:
   - component: {fileID: 1582474734}
   m_Layer: 0
   m_Name: Cubicle (2)
-  m_TagString: Untagged
+  m_TagString: Cubicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1501,7 +1555,7 @@ GameObject:
   - component: {fileID: 1865209177}
   m_Layer: 0
   m_Name: Cubicle (1)
-  m_TagString: Untagged
+  m_TagString: Cubicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1596,7 +1650,7 @@ GameObject:
   - component: {fileID: 1891049133}
   m_Layer: 0
   m_Name: Cubicle
-  m_TagString: Untagged
+  m_TagString: Cubicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

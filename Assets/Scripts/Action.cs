@@ -20,6 +20,9 @@ public abstract class Action : MonoBehaviour
 
     public WorldStates agentBeliefs;
 
+    public Inventory inventory;
+    public WorldStates beliefs;
+
     public bool running = false;
 
     public Action()
@@ -43,6 +46,9 @@ public abstract class Action : MonoBehaviour
             {
                 effectsDic.Add(w.key, w.value);
             }
+
+        inventory = this.GetComponent<Agent>().inventory;
+        beliefs = this.GetComponent<Agent>().beliefs;
     }
 
     public bool IsAchievable()
