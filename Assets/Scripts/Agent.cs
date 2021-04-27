@@ -21,6 +21,7 @@ public class Agent : MonoBehaviour
     public List<Action> actions = new List<Action>();
     public Dictionary<SubGoal, int> goals = new Dictionary<SubGoal, int>();
     public WorldStates beliefs = new WorldStates();
+    public float distanceToTargetThreshold = 1f;
 
     Planner planner;
     Queue<Action> actionQueue;
@@ -48,7 +49,7 @@ public class Agent : MonoBehaviour
     {
         if(currentAction != null && currentAction.running)
         {
-            if(currentAction.navAgent.hasPath && currentAction.navAgent.remainingDistance < 1f)
+            if(currentAction.navAgent.hasPath && currentAction.navAgent.remainingDistance < distanceToTargetThreshold)
             {
                 if(!invoked)
                 {

@@ -6,6 +6,9 @@ public class GetPatient : Action
 {
     public override bool PrePerform()
     {
+        target = World.Instance.RemovePatient();
+        if (target == null)
+            return false;
         return true;
     }
 

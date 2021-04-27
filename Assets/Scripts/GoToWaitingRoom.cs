@@ -12,6 +12,7 @@ public class GoToWaitingRoom : Action
     public override bool PostPerform()
     {
         World.Instance.GetWorld().ModifyState("Waiting", 1);
+        World.Instance.AddPatient(this.gameObject);
         return true;
     }
 }
