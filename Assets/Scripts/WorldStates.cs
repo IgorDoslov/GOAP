@@ -23,7 +23,7 @@ public class WorldStates
         return states.ContainsKey(key);
     }
 
-    void AddState(string key, int value)
+    public void AddState(string key, int value)
     {
         states.Add(key, value);
     }

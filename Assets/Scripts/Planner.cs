@@ -47,7 +47,7 @@ public class Planner
         foreach (Node leaf in leaves)
         {
             if (cheapest == null)
-                cheapest = null;
+                cheapest = leaf;
             else
             {
                 if (leaf.cost < cheapest.cost)

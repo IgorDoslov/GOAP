@@ -20,6 +20,7 @@ public class Agent : MonoBehaviour
 {
     public List<Action> actions = new List<Action>();
     public Dictionary<SubGoal, int> goals = new Dictionary<SubGoal, int>();
+    public WorldStates beliefs = new WorldStates();
 
     Planner planner;
     Queue<Action> actionQueue;

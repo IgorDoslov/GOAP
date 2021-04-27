@@ -11,6 +11,4 @@ public class Patient : Agent
         SubGoal s1 = new SubGoal("isWaiting", 1, true);
         goals.Add(s1, 3);
     }
-
-
 }

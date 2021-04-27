@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Patient
   - Nurse
+  - Register
+  - WaitingArea
+  - Door
+  - Reception
   layers:
   - Default
   - TransparentFX
