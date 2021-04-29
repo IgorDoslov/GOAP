@@ -22,6 +22,8 @@ public sealed class World
         }
         if (cubes.Length > 0)
             worldSt.ModifyState("FreeCubicle", cubes.Length);
+
+        Time.timeScale = 5;
     }
 
     private World()

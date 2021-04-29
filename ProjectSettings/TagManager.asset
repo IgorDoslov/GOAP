@@ -12,6 +12,7 @@ TagManager:
   - Reception
   - Cubicle
   - Home
+  - Lounge
   layers:
   - Default
   - TransparentFX
