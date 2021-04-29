@@ -6,7 +6,7 @@ public class GoToToilet : Action
 {
     public override bool PrePerform()
     {
-        target = World.Instance.RemoveToilet();
+        target = World.Instance.GetQueue("toilets").RemoveResource();
         if (target == null)
             return false;
         inventory.AddItem(target);
@@ -16,7 +16,7 @@ public class GoToToilet : Action
 
     public override bool PostPerform()
     {
-        World.Instance.AddToilet(target);
+        World.Instance.GetQueue("toilets").AddResource(target);
         inventory.RemoveItem(target);
         World.Instance.GetWorld().ModifyState("FreeToilet", 1);
         beliefs.RemoveState("busting");

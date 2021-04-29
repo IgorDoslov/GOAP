@@ -288,6 +288,8 @@ MonoBehaviour:
     value: 0
   - key: busting
     value: 0
+  - key: atHospital
+    value: 0
   afterEffects:
   - key: relief
     value: 0

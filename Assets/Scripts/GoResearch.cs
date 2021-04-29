@@ -6,7 +6,7 @@ public class GoResearch : Action
 {
     public override bool PrePerform()
     {
-        target = World.Instance.RemoveOffice();
+        target = World.Instance.GetQueue("offices").RemoveResource();
         if (target == null)
             return false;
         inventory.AddItem(target);
@@ -16,7 +16,7 @@ public class GoResearch : Action
 
     public override bool PostPerform()
     {
-        World.Instance.AddOffice(target);
+        World.Instance.GetQueue("offices").AddResource(target);
         inventory.RemoveItem(target);
         World.Instance.GetWorld().ModifyState("FreeOffice", 1);
         return true;

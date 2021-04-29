@@ -15,7 +15,7 @@ public class GoToCubicle : Action
     public override bool PostPerform()
     {
         World.Instance.GetWorld().ModifyState("TreatingPatient", 1);
-        World.Instance.AddCubicle(target);
+        World.Instance.GetQueue("cubicles").AddResource(target);
         inventory.RemoveItem(target);
         World.Instance.GetWorld().ModifyState("FreeCubicle", 1);
         return true;

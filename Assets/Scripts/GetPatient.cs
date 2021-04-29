@@ -7,18 +7,18 @@ public class GetPatient : Action
     GameObject resource;
     public override bool PrePerform()
     {
-        target = World.Instance.RemovePatient();
+        target = World.Instance.GetQueue("patients").RemoveResource();
         if (target == null)
             return false;
 
-        resource = World.Instance.RemoveCubicle();
-        if(resource != null)
+        resource = World.Instance.GetQueue("cubicles").RemoveResource();
+        if (resource != null)
         {
             inventory.AddItem(resource);
         }
         else
         {
-            World.Instance.AddPatient(target);
+            World.Instance.GetQueue("patients").AddResource(target);
             target = null;
             return false;
         }
