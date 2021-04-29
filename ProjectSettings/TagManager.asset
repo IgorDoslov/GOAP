@@ -13,6 +13,8 @@ TagManager:
   - Cubicle
   - Home
   - Lounge
+  - Office
+  - Toilet
   layers:
   - Default
   - TransparentFX

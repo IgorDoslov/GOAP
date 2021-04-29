@@ -37,6 +37,8 @@ public class Agent : MonoBehaviour
     public Action currentAction;
     SubGoal currentGoal;
 
+    Vector3 destination = Vector3.zero;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -64,8 +66,8 @@ public class Agent : MonoBehaviour
     {
         if(currentAction != null && currentAction.running)
         {
-            float distToTarget = Vector3.Distance(currentAction.target.transform.position, transform.position);
-            if(currentAction.navAgent.hasPath && distToTarget < distanceToTargetThreshold)
+            float distToTarget = Vector3.Distance(destination, transform.position);
+            if(distToTarget < distanceToTargetThreshold)
             {
                 if(!invoked)
                 {
@@ -100,7 +102,7 @@ public class Agent : MonoBehaviour
             }
             planner = null;
         }
-
+        // sets our action and gets the target
         if(actionQueue != null && actionQueue.Count > 0)
         {
             currentAction = actionQueue.Dequeue();
@@ -112,7 +114,15 @@ public class Agent : MonoBehaviour
                 if(currentAction.target != null)
                 {
                     currentAction.running = true;
-                    currentAction.navAgent.SetDestination(currentAction.target.transform.position);
+
+                    destination = currentAction.target.transform.position;
+                    Transform dest = currentAction.target.transform.Find("Destination");
+                    if(dest != null)
+                    {
+                        destination = dest.position;
+                    }
+
+                    currentAction.navAgent.SetDestination(destination);
                 }
             }
             else

@@ -8,12 +8,16 @@ public sealed class World
     private static WorldStates worldSt;
     private static Queue<GameObject> patients;
     private static Queue<GameObject> cubicles;
-    
+    private static Queue<GameObject> offices;
+    private static Queue<GameObject> toilets;
+
     static World()
     {
         worldSt = new WorldStates();
         patients = new Queue<GameObject>();
         cubicles = new Queue<GameObject>();
+        offices = new Queue<GameObject>();
+        toilets = new Queue<GameObject>();
 
         GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cubicle");
         foreach (GameObject c in cubes)
@@ -22,6 +26,22 @@ public sealed class World
         }
         if (cubes.Length > 0)
             worldSt.ModifyState("FreeCubicle", cubes.Length);
+
+        GameObject[] offcs = GameObject.FindGameObjectsWithTag("Office");
+        foreach (GameObject o in offcs)
+        {
+            offices.Enqueue(o);
+        }
+        if (offcs.Length > 0)
+            worldSt.ModifyState("FreeOffice", offcs.Length);
+
+        GameObject[] tois = GameObject.FindGameObjectsWithTag("Toilet");
+        foreach (GameObject t in tois)
+        {
+            toilets.Enqueue(t);
+        }
+        if (tois.Length > 0)
+            worldSt.ModifyState("FreeToilet", tois.Length);
 
         Time.timeScale = 5;
     }
@@ -52,6 +72,30 @@ public sealed class World
             return null;
         return cubicles.Dequeue();
     }
+    public void AddOffice(GameObject office)
+    {
+        offices.Enqueue(office);
+    }
+
+    public GameObject RemoveOffice()
+    {
+        if (offices.Count == 0)
+            return null;
+        return offices.Dequeue();
+    }
+
+    public void AddToilet(GameObject toilet)
+    {
+        offices.Enqueue(toilet);
+    }
+
+    public GameObject RemoveToilet()
+    {
+        if (toilets.Count == 0)
+            return null;
+        return toilets.Dequeue();
+    }
+
 
     public static World Instance
     {
