@@ -36,14 +36,14 @@ public class Planner
 {
     public Queue<Action> Plan(List<Action> actions, Dictionary<string, int> goal, WorldStates beliefstates)
     {
-        // List<Action> usableActions = new List<Action>();
+        //List<Action> usableActions = new List<Action>();
         //foreach (Action a in actions)
-        // {
-        //if (a.IsAchievable())
-        // {
-        //actions.Add(a);
-            //}
-       // }
+        //{
+        //    if (a.IsAchievable())
+        //    {
+        //        actions.Add(a);
+        //    }
+        //}
 
         List<Node> leaves = new List<Node>();
         Node start = new Node(null, 0, World.Instance.GetWorld().Getstates(), beliefstates.Getstates(), null);
