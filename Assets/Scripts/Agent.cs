@@ -15,15 +15,23 @@ public class SubGoal
         remove = r;
     }
 }
+[System.Serializable]
+public class Goal
+{
+    public string goal;
+    public int value;
+    public bool shouldRemove;
+    public int priority;
+}
 
 public class Agent : MonoBehaviour
 {
     public List<Action> actions = new List<Action>();
-    public Dictionary<SubGoal, int> goals = new Dictionary<SubGoal, int>();
+    public Dictionary<SubGoal, int> goalsDic = new Dictionary<SubGoal, int>();
     public Inventory inventory = new Inventory();
     public WorldStates beliefs = new WorldStates();
-    public float distanceToTargetThreshold = 1f;
-
+    public float distanceToTargetThreshold = 2f;
+    public Goal[] myGoals;
     Planner planner;
     Queue<Action> actionQueue;
     public Action currentAction;
@@ -35,6 +43,12 @@ public class Agent : MonoBehaviour
         Action[] acts = this.GetComponents<Action>();
         foreach (Action a in acts)
             actions.Add(a);
+        for (int i = 0; i < myGoals.Length; i++)
+        {
+            Goal g = myGoals[i];
+            SubGoal sg = new SubGoal(g.goal, g.value, g.shouldRemove);
+            goalsDic.Add(sg, g.priority);
+        }
     }
 
     bool invoked = false;
@@ -50,7 +64,8 @@ public class Agent : MonoBehaviour
     {
         if(currentAction != null && currentAction.running)
         {
-            if(currentAction.navAgent.hasPath && currentAction.navAgent.remainingDistance < distanceToTargetThreshold)
+            float distToTarget = Vector3.Distance(currentAction.target.transform.position, transform.position);
+            if(currentAction.navAgent.hasPath && distToTarget < distanceToTargetThreshold)
             {
                 if(!invoked)
                 {
@@ -65,7 +80,7 @@ public class Agent : MonoBehaviour
         {
             planner = new Planner();
 
-            var sortedGoals = from entry in goals orderby entry.Value descending select entry;
+            var sortedGoals = from entry in goalsDic orderby entry.Value descending select entry;
 
             foreach(KeyValuePair<SubGoal, int> sg in sortedGoals)
             {
@@ -81,7 +96,7 @@ public class Agent : MonoBehaviour
         {
             if(currentGoal.remove)
             {
-                goals.Remove(currentGoal);
+                goalsDic.Remove(currentGoal);
             }
             planner = null;
         }

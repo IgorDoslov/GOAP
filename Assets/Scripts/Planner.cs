@@ -10,12 +10,12 @@ public class Node
     public Dictionary<string, int> state; // world state
     public Action action;
 
-    public Node(Node parent, float cost, Dictionary<string, int> allStates, Action action)
+    public Node(Node a_parent, float a_cost, Dictionary<string, int> a_allStates, Action a_action)
     {
-        this.parent = parent;
-        this.cost = cost;
-        this.state = new Dictionary<string, int>(allStates);
-        this.action = action;
+        parent = a_parent;
+        cost = a_cost;
+        state = new Dictionary<string, int>(a_allStates);
+        action = a_action;
     }
 
     public Node(Node parent, float cost, Dictionary<string, int> allStates, Dictionary<string, int> beliefStates, Action action)
@@ -36,19 +36,19 @@ public class Planner
 {
     public Queue<Action> Plan(List<Action> actions, Dictionary<string, int> goal, WorldStates beliefstates)
     {
-        List<Action> usableActions = new List<Action>();
-        foreach (Action a in actions)
-        {
-            if (a.IsAchievable())
-            {
-                usableActions.Add(a);
-            }
-        }
+        // List<Action> usableActions = new List<Action>();
+        //foreach (Action a in actions)
+        // {
+        //if (a.IsAchievable())
+        // {
+        //actions.Add(a);
+            //}
+       // }
 
         List<Node> leaves = new List<Node>();
         Node start = new Node(null, 0, World.Instance.GetWorld().Getstates(), beliefstates.Getstates(), null);
 
-        bool success = BuildGraph(start, leaves, usableActions, goal);
+        bool success = BuildGraph(start, leaves, actions, goal);
 
         if (!success)
         {

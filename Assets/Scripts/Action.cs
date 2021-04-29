@@ -18,7 +18,7 @@ public abstract class Action : MonoBehaviour
     public Dictionary<string, int> preconditionsDic;
     public Dictionary<string, int> effectsDic;
 
-    public WorldStates agentBeliefs;
+    //public WorldStates agentBeliefs;
 
     public Inventory inventory;
     public WorldStates beliefs;
