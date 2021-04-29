@@ -11,6 +11,7 @@ public class GoHome : Action
 
     public override bool PostPerform()
     {
+        Destroy(this.gameObject);
         return true;
     }
 }
