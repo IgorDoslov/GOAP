@@ -86,7 +86,7 @@ public sealed class World
 
     public void AddToilet(GameObject toilet)
     {
-        offices.Enqueue(toilet);
+        toilets.Enqueue(toilet);
     }
 
     public GameObject RemoveToilet()

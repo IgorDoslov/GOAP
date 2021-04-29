@@ -13,6 +13,13 @@ public class Patient : Agent
 
         //SubGoal s2 = new SubGoal("isTreated", 1, true);
         //goalsDic.Add(s2, 5);
+        Invoke("NeedRelief", Random.Range(10, 20));
 
+    }
+
+    void NeedRelief()
+    {
+        beliefs.ModifyState("busting", 0);
+        Invoke("NeedRelief", Random.Range(2, 5));
     }
 }

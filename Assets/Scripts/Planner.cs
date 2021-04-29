@@ -22,11 +22,11 @@ public class Node
     {
         this.parent = parent;
         this.cost = cost;
-        this.state = new Dictionary<string, int>(allStates);
+        state = new Dictionary<string, int>(allStates);
         foreach (KeyValuePair<string, int> belief in beliefStates)
         {
-            if (!this.state.ContainsKey(belief.Key))
-                this.state.Add(belief.Key, belief.Value);
+            if (!state.ContainsKey(belief.Key))
+                state.Add(belief.Key, belief.Value);
         }
         this.action = action;
     }
