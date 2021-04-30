@@ -6,17 +6,40 @@ using UnityEngine.AI;
 public class WorldInterface : MonoBehaviour
 {
     GameObject focusObject;
-    public GameObject newResourcePrefab;
+    ResourceData focusObjectData;
+    GameObject newResourcePrefab;
+    public GameObject[] allResources;
     public GameObject hospital;
     Vector3 goalPos;
     public NavMeshSurface surface;
     Vector3 clickOffset = Vector3.zero;
     bool offsetCalc = false;
+    bool deleteResource = false;
 
     // Start is called before the first frame update
     void Start()
     {
 
+    }
+
+    public void MouseOnHoverTrash()
+    {
+        deleteResource = true;
+    }
+
+    public void MouseOutHoverTrash()
+    {
+        deleteResource = false;
+    }
+
+    public void ActivateToilet()
+    {
+        newResourcePrefab = allResources[0];
+    }
+
+    public void ActivateCubicle()
+    {
+        newResourcePrefab = allResources[1];
     }
 
     // Update is called once per frame
@@ -29,26 +52,49 @@ public class WorldInterface : MonoBehaviour
             if (!Physics.Raycast(ray, out hit))
                 return;
 
-            if (hit.transform.gameObject.tag == "Toilet")
+            offsetCalc = false;
+            clickOffset = Vector3.zero;
+
+            Resource r = hit.transform.gameObject.GetComponent<Resource>();
+
+
+            if (r != null)
             {
                 focusObject = hit.transform.gameObject;
+                focusObjectData = r.info;
             }
-            else
+            else if (newResourcePrefab != null)
             {
                 goalPos = hit.point;
                 focusObject = Instantiate(newResourcePrefab, goalPos, newResourcePrefab.transform.rotation);
+                focusObjectData = focusObject.GetComponent<Resource>().info;
             }
 
-            focusObject.GetComponent<Collider>().enabled = false;
+            if (focusObject)
+            {
+                focusObject.GetComponent<Collider>().enabled = false;
+
+            }
 
         }
         else if (focusObject && Input.GetMouseButtonUp(0))
         {
-            focusObject.transform.parent = hospital.transform;
+            if (deleteResource)
+            {
+                World.Instance.GetQueue(focusObjectData.resourceQueue).RemoveResource(focusObject);
+                World.Instance.GetWorld().ModifyState(focusObjectData.resourceState, -1);
+                Destroy(focusObject);
+            }
+            else
+            {
+                focusObject.transform.parent = hospital.transform;
+                World.Instance.GetQueue(focusObjectData.resourceQueue).AddResource(focusObject);
+                World.Instance.GetWorld().ModifyState(focusObjectData.resourceState, 1);
+                focusObject.GetComponent<Collider>().enabled = true;
+
+            }
+
             surface.BuildNavMesh();
-            World.Instance.GetQueue("toilets").AddResource(focusObject);
-            World.Instance.GetWorld().ModifyState("FreeToilet", 1);
-            focusObject.GetComponent<Collider>().enabled = true;
 
             focusObject = null;
 
@@ -59,6 +105,12 @@ public class WorldInterface : MonoBehaviour
             Ray rayMove = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (!Physics.Raycast(rayMove, out hitMove))
                 return;
+
+            if (!offsetCalc)
+            {
+                clickOffset = hitMove.point - focusObject.transform.position;
+                offsetCalc = true;
+            }
 
             goalPos = hitMove.point;
             focusObject.transform.position = goalPos;
