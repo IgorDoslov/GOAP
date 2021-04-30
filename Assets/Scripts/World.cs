@@ -47,6 +47,7 @@ public sealed class World
     private static ResourceQueue cubicles;
     private static ResourceQueue offices;
     private static ResourceQueue toilets;
+    private static ResourceQueue wees;
     private static Dictionary<string, ResourceQueue> resources = new Dictionary<string, ResourceQueue>();
 
     static World()
@@ -64,6 +65,8 @@ public sealed class World
         toilets = new ResourceQueue("Toilet", "FreeToilet", worldSt);
         resources.Add("toilets", toilets);
 
+        wees = new ResourceQueue("Wee", "FreeWee", worldSt);
+        resources.Add("wees", wees);
 
         Time.timeScale = 5;
     }

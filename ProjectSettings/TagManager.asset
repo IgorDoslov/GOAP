@@ -15,6 +15,7 @@ TagManager:
   - Lounge
   - Office
   - Toilet
+  - Wee
   layers:
   - Default
   - TransparentFX
