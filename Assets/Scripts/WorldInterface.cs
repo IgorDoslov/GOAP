@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class WorldInterface : MonoBehaviour
 {
@@ -47,6 +48,11 @@ public class WorldInterface : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (!Physics.Raycast(ray, out hit))
@@ -101,9 +107,10 @@ public class WorldInterface : MonoBehaviour
         }
         else if (focusObject && Input.GetMouseButton(0))
         {
+            int layerMask = 1 << 8;
             RaycastHit hitMove;
             Ray rayMove = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (!Physics.Raycast(rayMove, out hitMove))
+            if (!Physics.Raycast(rayMove, out hitMove, Mathf.Infinity, layerMask))
                 return;
 
             if (!offsetCalc)
