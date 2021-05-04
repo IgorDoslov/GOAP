@@ -18,23 +18,23 @@ public class Node
         action = a_action;
     }
 
-    public Node(Node parent, float cost, Dictionary<string, int> allStates, Dictionary<string, int> beliefStates, Action action)
+    public Node(Node a_parent, float a_cost, Dictionary<string, int> a_allStates, Dictionary<string, int> a_beliefStates, Action a_action)
     {
-        this.parent = parent;
-        this.cost = cost;
-        state = new Dictionary<string, int>(allStates);
-        foreach (KeyValuePair<string, int> belief in beliefStates)
+        parent = a_parent;
+        cost = a_cost;
+        state = new Dictionary<string, int>(a_allStates);
+        foreach (KeyValuePair<string, int> belief in a_beliefStates)
         {
             if (!state.ContainsKey(belief.Key))
                 state.Add(belief.Key, belief.Value);
         }
-        this.action = action;
+        action = a_action;
     }
 }
 
 public class Planner
 {
-    public Queue<Action> Plan(List<Action> actions, Dictionary<string, int> goal, WorldStates beliefstates)
+    public Queue<Action> Plan(List<Action> a_actions, Dictionary<string, int> a_goal, WorldStates a_beliefstates)
     {
         //List<Action> usableActions = new List<Action>();
         //foreach (Action a in actions)
@@ -46,9 +46,9 @@ public class Planner
         //}
 
         List<Node> leaves = new List<Node>();
-        Node start = new Node(null, 0, World.Instance.GetWorld().Getstates(), beliefstates.Getstates(), null);
+        Node start = new Node(null, 0, World.Instance.GetWorld().Getstates(), a_beliefstates.Getstates(), null);
 
-        bool success = BuildGraph(start, leaves, actions, goal);
+        bool success = BuildGraph(start, leaves, a_actions, a_goal);
 
         if (!success)
         {
@@ -94,31 +94,31 @@ public class Planner
         return queue;
     }
 
-    private bool BuildGraph(Node parent, List<Node> leaves, List<Action> useableActions, Dictionary<string, int> goal)
+    private bool BuildGraph(Node a_parent, List<Node> a_leaves, List<Action> a_useableActions, Dictionary<string, int> a_goal)
     {
         bool foundPath = false;
-        foreach (Action action in useableActions)
+        foreach (Action action in a_useableActions)
         {
-            if (action.IsAchievableGiven(parent.state))
+            if (action.IsAchievableGiven(a_parent.state))
             {
-                Dictionary<string, int> currentState = new Dictionary<string, int>(parent.state);
+                Dictionary<string, int> currentState = new Dictionary<string, int>(a_parent.state);
                 foreach (KeyValuePair<string, int> effect in action.effectsDic)
                 {
                     if (!currentState.ContainsKey(effect.Key))
                         currentState.Add(effect.Key, effect.Value);
                 }
 
-                Node node = new Node(parent, parent.cost + action.cost, currentState, action);
+                Node node = new Node(a_parent, a_parent.cost + action.cost, currentState, action);
 
-                if (GoalAchieved(goal, currentState))
+                if (GoalAchieved(a_goal, currentState))
                 {
-                    leaves.Add(node);
+                    a_leaves.Add(node);
                     foundPath = true;
                 }
                 else
                 {
-                    List<Action> subset = ActionSubset(useableActions, action); // prevents circular path
-                    bool found = BuildGraph(node, leaves, subset, goal);
+                    List<Action> subset = ActionSubset(a_useableActions, action); // prevents circular path
+                    bool found = BuildGraph(node, a_leaves, subset, a_goal);
                     if (found)
                         foundPath = true;
                 }
@@ -128,22 +128,22 @@ public class Planner
     }
 
 
-    private bool GoalAchieved(Dictionary<string, int> goal, Dictionary<string, int> state)
+    private bool GoalAchieved(Dictionary<string, int> a_goal, Dictionary<string, int> a_state)
     {
-        foreach(KeyValuePair<string, int> g in goal)
+        foreach(KeyValuePair<string, int> g in a_goal)
         {
-            if (!state.ContainsKey(g.Key))
+            if (!a_state.ContainsKey(g.Key))
                 return false;
         }
         return true;
     }
 
-    private List<Action> ActionSubset(List<Action> actions, Action removeMe)
+    private List<Action> ActionSubset(List<Action> a_actions, Action a_removeMe)
     {
         List<Action> subset = new List<Action>();
-        foreach(Action a in actions)
+        foreach(Action a in a_actions)
         {
-            if (!a.Equals(removeMe))
+            if (!a.Equals(a_removeMe))
                 subset.Add(a);
         }
         return subset;
