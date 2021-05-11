@@ -16,6 +16,7 @@ TagManager:
   - Office
   - Toilet
   - Wee
+  - TestTag
   layers:
   - Default
   - TransparentFX

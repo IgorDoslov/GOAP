@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GOAP;
+
 
 public class StateMonitor : MonoBehaviour
 {
@@ -9,7 +11,10 @@ public class StateMonitor : MonoBehaviour
     public float stateDecayRate;
     public WorldStates beliefs;
     public GameObject resourcePrefab;
+
+    [TagSelector]
     public string queueName;
+
     public string worldState;
     public Action action;
 

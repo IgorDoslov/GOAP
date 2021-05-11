@@ -1,15 +1,17 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GOAP;
 
-public class GoToHospital : Action
+public class #SCRIPTNAME# : Action
 {
+     // called at the begining of this action
     public override bool PrePerform()
     {
         return true;
+
     }
 
+    // On exiting the state
     public override bool PostPerform()
     {
         return true;

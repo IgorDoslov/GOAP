@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2231036477828130743}
   - component: {fileID: 2231036477828130742}
   - component: {fileID: 2231036477828130741}
-  - component: {fileID: 1891049133}
   m_Layer: 0
   m_Name: Cubicle
   m_TagString: Cubicle
@@ -96,16 +95,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1891049133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2231036477828130740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe58e88368a9c434dbd03e844f186d4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info: {fileID: 11400000, guid: 61393e71b918c0346b4bca6352a02e9b, type: 2}

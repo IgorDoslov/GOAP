@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GOAP;
 
 public class CleanWee : Action
 {
     public override bool PrePerform()
     {
-        target = World.Instance.GetQueue("wees").RemoveResource();
+        target = World.Instance.GetQueue("Wee").RemoveResource();
         if (target == null)
         {
             return false;

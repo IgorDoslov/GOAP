@@ -287,6 +287,6 @@ MonoBehaviour:
   stateStrength: 10
   stateDecayRate: 2
   resourcePrefab: {fileID: 1230992707977088803, guid: 2bb5490d154acba47b2569c64a196cfc, type: 3}
-  queueName: wees
+  queueName: Wee
   worldState: FreeWee
   action: {fileID: 352052380760787214}
