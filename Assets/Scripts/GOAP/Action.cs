@@ -12,17 +12,15 @@ namespace GOAP
         public GameObject target;
         public string targetTag;
         public float duration = 0;
-        public WorldState[] preConditions;
-        public WorldState[] afterEffects;
+        public State[] preConditions;
+        public State[] afterEffects;
         public NavMeshAgent navAgent;
 
         public Dictionary<string, int> preconditionsDic;
         public Dictionary<string, int> effectsDic;
 
-        //public WorldStates agentBeliefs;
-
         public Inventory inventory;
-        public WorldStates beliefs;
+        public StateCollection internalState;
 
         public bool running = false;
 
@@ -34,22 +32,22 @@ namespace GOAP
 
         public void Awake()
         {
-            navAgent = this.gameObject.GetComponent<NavMeshAgent>();
+            navAgent = gameObject.GetComponent<NavMeshAgent>();
 
             if (preConditions != null)
-                foreach (WorldState w in preConditions)
+                foreach (State w in preConditions)
                 {
                     preconditionsDic.Add(w.key, w.value);
                 }
 
             if (afterEffects != null)
-                foreach (WorldState w in afterEffects)
+                foreach (State w in afterEffects)
                 {
                     effectsDic.Add(w.key, w.value);
                 }
 
             inventory = this.GetComponent<Agent>().inventory;
-            beliefs = this.GetComponent<Agent>().beliefs;
+            internalState = this.GetComponent<Agent>().beliefs;
         }
 
         public bool IsAchievable()

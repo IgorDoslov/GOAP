@@ -7,7 +7,7 @@ public class GoHome : Action
 {
     public override bool PrePerform()
     {
-        beliefs.RemoveState("atHospital");
+        internalState.RemoveState("atHospital");
 
         return true;
     }

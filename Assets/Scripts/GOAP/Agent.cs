@@ -31,7 +31,7 @@ namespace GOAP
         public List<Action> actions = new List<Action>();
         public Dictionary<SubGoal, int> goalsDic = new Dictionary<SubGoal, int>();
         public Inventory inventory = new Inventory();
-        public WorldStates beliefs = new WorldStates();
+        public StateCollection beliefs = new StateCollection();
         public float distanceToTargetThreshold = 2f;
         public Goal[] myGoals;
         Planner planner;

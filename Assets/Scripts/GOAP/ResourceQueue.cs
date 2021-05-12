@@ -11,7 +11,7 @@ namespace GOAP
         public string tag;
         public string modState;
 
-        public ResourceQueue(string a_tag, string a_modState, WorldStates a_worldStates)
+        public ResourceQueue(string a_tag, string a_modState, StateCollection a_worldStates)
         {
             tag = a_tag;
             modState = a_modState;

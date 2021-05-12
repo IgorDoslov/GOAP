@@ -44,7 +44,7 @@ public class GAgentVisualEditor : Editor
                 GUILayout.Label("=====  " + sg.Key);
         }
         GUILayout.Label("Beliefs: ");
-        foreach (KeyValuePair<string, int> sg in agent.gameObject.GetComponent<Agent>().beliefs.Getstates())
+        foreach (KeyValuePair<string, int> sg in agent.gameObject.GetComponent<Agent>().beliefs.GetStateDictionary())
         {
                 GUILayout.Label("=====  " + sg.Key);
         }

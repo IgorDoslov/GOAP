@@ -23,13 +23,13 @@ public class GetPatient : Action
             target = null;
             return false;
         }
-        World.Instance.GetWorld().ModifyState("FreeCubicle", -1);
+        World.Instance.GetStateCollection().ModifyState("FreeCubicle", -1);
         return true;
     }
 
     public override bool PostPerform()
     {
-        World.Instance.GetWorld().ModifyState("Waiting", -1);
+        World.Instance.GetStateCollection().ModifyState("Waiting", -1);
         if(target)
         {
             target.GetComponent<Agent>().inventory.AddItem(resource);

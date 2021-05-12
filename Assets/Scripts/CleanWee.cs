@@ -13,7 +13,7 @@ public class CleanWee : Action
             return false;
         }
         inventory.AddItem(target);
-        World.Instance.GetWorld().ModifyState("FreeWee", -1);
+        World.Instance.GetStateCollection().ModifyState("FreeWee", -1);
         return true;
     }
 

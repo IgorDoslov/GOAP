@@ -9,7 +9,7 @@ public class StateMonitor : MonoBehaviour
     public string state;
     public float stateStrength;
     public float stateDecayRate;
-    public WorldStates beliefs;
+    public StateCollection beliefs;
     public GameObject resourcePrefab;
 
     [TagSelector]
@@ -51,7 +51,7 @@ public class StateMonitor : MonoBehaviour
                 stateStrength = initialStrength;
                 beliefs.RemoveState(state);
                 World.Instance.GetQueue(queueName).AddResource(p);
-                World.Instance.GetWorld().ModifyState(worldState, 1);
+                World.Instance.GetStateCollection().ModifyState(worldState, 1);
             }
         }
     }

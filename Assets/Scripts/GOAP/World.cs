@@ -18,7 +18,7 @@ namespace GOAP
         }
 
        // private static readonly World instance = new World();
-        private static WorldStates worldSt;
+        private static StateCollection worldStates;
         //private static ResourceQueue patients;
         //private static ResourceQueue cubicles;
         //private static ResourceQueue offices;
@@ -30,11 +30,11 @@ namespace GOAP
 
         public void Start()
         {
-            worldSt = new WorldStates();
+            worldStates = new StateCollection();
 
             foreach (var r in resourceConfig)
             {
-                var res = new ResourceQueue(r.tag,r.modifier,worldSt);
+                var res = new ResourceQueue(r.tag,r.modifier,worldStates);
                 resources.Add(r.tag, res);
             }
 
@@ -65,7 +65,7 @@ namespace GOAP
             {
 
                 instance = this;
-                DontDestroyOnLoad(this.gameObject);
+                DontDestroyOnLoad(gameObject);
 
                 //Rest of your Awake code
 
@@ -81,17 +81,14 @@ namespace GOAP
             return resources[type];
         }
 
-       
-
-
         public static World Instance
         {
             get { return instance; }
         }
 
-        public WorldStates GetWorld()
+        public StateCollection GetStateCollection()
         {
-            return worldSt;
+            return worldStates;
         }
         
     }

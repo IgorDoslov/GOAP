@@ -12,7 +12,7 @@ public class Rest : Action
 
     public override bool PostPerform()
     {
-        beliefs.RemoveState("exhausted");
+        internalState.RemoveState("exhausted");
         return true;
     }
 }

@@ -7,7 +7,7 @@ namespace GOAP
 {
     public class Planner
     {
-        public Queue<Action> Plan(List<Action> a_actions, Dictionary<string, int> a_goal, WorldStates a_beliefstates)
+        public Queue<Action> Plan(List<Action> a_actions, Dictionary<string, int> a_goal, StateCollection a_beliefstates)
         {
             //List<Action> usableActions = new List<Action>();
             //foreach (Action a in actions)
@@ -19,7 +19,7 @@ namespace GOAP
             //}
 
             List<Node> leaves = new List<Node>();
-            Node start = new Node(null, 0, World.Instance.GetWorld().Getstates(), a_beliefstates.Getstates(), null);
+            Node start = new Node(null, 0, World.Instance.GetStateCollection().GetStateDictionary(), a_beliefstates.GetStateDictionary(), null);
 
             bool success = BuildGraph(start, leaves, a_actions, a_goal);
 

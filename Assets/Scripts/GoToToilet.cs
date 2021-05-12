@@ -11,7 +11,7 @@ public class GoToToilet : Action
         if (target == null)
             return false;
         inventory.AddItem(target);
-        World.Instance.GetWorld().ModifyState("FreeToilet", -1);
+        World.Instance.GetStateCollection().ModifyState("FreeToilet", -1);
         return true;
     }
 
@@ -19,8 +19,8 @@ public class GoToToilet : Action
     {
         World.Instance.GetQueue("Toilet").AddResource(target);
         inventory.RemoveItem(target);
-        World.Instance.GetWorld().ModifyState("FreeToilet", 1);
-        beliefs.RemoveState("busting");
+        World.Instance.GetStateCollection().ModifyState("FreeToilet", 1);
+        internalState.RemoveState("busting");
         return true;
     }
 }

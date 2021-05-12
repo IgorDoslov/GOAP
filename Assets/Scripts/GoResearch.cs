@@ -11,7 +11,7 @@ public class GoResearch : Action
         if (target == null)
             return false;
         inventory.AddItem(target);
-        World.Instance.GetWorld().ModifyState("FreeOffice", -1);
+        World.Instance.GetStateCollection().ModifyState("FreeOffice", -1);
         return true;
     }
 
@@ -19,7 +19,7 @@ public class GoResearch : Action
     {
         World.Instance.GetQueue("Office").AddResource(target);
         inventory.RemoveItem(target);
-        World.Instance.GetWorld().ModifyState("FreeOffice", 1);
+        World.Instance.GetStateCollection().ModifyState("FreeOffice", 1);
         return true;
     }
 }

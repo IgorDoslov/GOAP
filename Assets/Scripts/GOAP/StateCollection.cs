@@ -6,17 +6,17 @@ using UnityEngine;
 namespace GOAP
 {
     [System.Serializable]
-    public class WorldState
+    public class State
     {
         public string key;
         public int value;
     }
 
-    public class WorldStates
+    public class StateCollection
     {
         public Dictionary<string, int> states;
 
-        public WorldStates()
+        public StateCollection()
         {
             states = new Dictionary<string, int>();
         }
@@ -57,7 +57,7 @@ namespace GOAP
                 states.Add(key, value);
         }
 
-        public Dictionary<string, int> Getstates()
+        public Dictionary<string, int> GetStateDictionary()
         {
             return states;
         }

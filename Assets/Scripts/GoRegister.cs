@@ -12,7 +12,7 @@ public class GoRegister : Action
 
     public override bool PostPerform()
     {
-        beliefs.ModifyState("atHospital", 0);
+        internalState.ModifyState("atHospital", 0);
         return true;
     }
 }
