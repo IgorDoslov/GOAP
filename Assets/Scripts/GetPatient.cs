@@ -6,7 +6,7 @@ using GOAP;
 public class GetPatient : Action
 {
     GameObject resource;
-    public override bool PrePerform()
+    public override bool OnActionEnter()
     {
         target = World.Instance.GetQueue("Patient").RemoveResource();
         if (target == null)
@@ -27,7 +27,7 @@ public class GetPatient : Action
         return true;
     }
 
-    public override bool PostPerform()
+    public override bool OnActionExit()
     {
         World.Instance.GetStateCollection().ModifyState("Waiting", -1);
         if(target)

@@ -17,6 +17,8 @@ TagManager:
   - Toilet
   - Wee
   - TestTag
+  - Food
+  - Water
   layers:
   - Default
   - TransparentFX

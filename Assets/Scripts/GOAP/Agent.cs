@@ -31,7 +31,7 @@ namespace GOAP
         public List<Action> actions = new List<Action>();
         public Dictionary<SubGoal, int> goalsDic = new Dictionary<SubGoal, int>();
         public Inventory inventory = new Inventory();
-        public StateCollection beliefs = new StateCollection();
+        public StateCollection agentInternalState = new StateCollection();
         public float distanceToTargetThreshold = 2f;
         public Goal[] myGoals;
         Planner planner;
@@ -44,7 +44,7 @@ namespace GOAP
         // Start is called before the first frame update
         public void Start()
         {
-            Action[] acts = this.GetComponents<Action>();
+            Action[] acts = GetComponents<Action>();
             foreach (Action a in acts)
                 actions.Add(a);
             for (int i = 0; i < myGoals.Length; i++)
@@ -59,7 +59,7 @@ namespace GOAP
         void CompleteAction()
         {
             currentAction.running = false;
-            currentAction.PostPerform();
+            currentAction.OnActionExit();
             invoked = false;
         }
 
@@ -88,7 +88,7 @@ namespace GOAP
 
                 foreach (KeyValuePair<SubGoal, int> sg in sortedGoals)
                 {
-                    actionQueue = planner.Plan(actions, sg.Key.subGoals, beliefs); // trying to create a plan for the most important goal
+                    actionQueue = planner.Plan(actions, sg.Key.subGoals, agentInternalState); // trying to create a plan for the most important goal
                     if (actionQueue != null)
                     {
                         currentGoal = sg.Key;
@@ -108,7 +108,7 @@ namespace GOAP
             if (actionQueue != null && actionQueue.Count > 0)
             {
                 currentAction = actionQueue.Dequeue();
-                if (currentAction.PrePerform())
+                if (currentAction.OnActionEnter())
                 {
                     if (currentAction.target == null && currentAction.targetTag != "")
                         currentAction.target = GameObject.FindWithTag(currentAction.targetTag);

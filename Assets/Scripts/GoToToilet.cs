@@ -5,7 +5,7 @@ using GOAP;
 
 public class GoToToilet : Action
 {
-    public override bool PrePerform()
+    public override bool OnActionEnter()
     {
         target = World.Instance.GetQueue("Toilet").RemoveResource();
         if (target == null)
@@ -15,7 +15,7 @@ public class GoToToilet : Action
         return true;
     }
 
-    public override bool PostPerform()
+    public override bool OnActionExit()
     {
         World.Instance.GetQueue("Toilet").AddResource(target);
         inventory.RemoveItem(target);

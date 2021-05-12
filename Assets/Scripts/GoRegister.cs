@@ -5,12 +5,12 @@ using GOAP;
 
 public class GoRegister : Action
 {
-    public override bool PrePerform()
+    public override bool OnActionEnter()
     {
         return true;
     }
 
-    public override bool PostPerform()
+    public override bool OnActionExit()
     {
         internalState.ModifyState("atHospital", 0);
         return true;

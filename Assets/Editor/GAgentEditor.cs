@@ -43,8 +43,8 @@ public class GAgentVisualEditor : Editor
             foreach (KeyValuePair<string, int> sg in g.Key.subGoals)
                 GUILayout.Label("=====  " + sg.Key);
         }
-        GUILayout.Label("Beliefs: ");
-        foreach (KeyValuePair<string, int> sg in agent.gameObject.GetComponent<Agent>().beliefs.GetStateDictionary())
+        GUILayout.Label("agentInternalState: ");
+        foreach (KeyValuePair<string, int> sg in agent.gameObject.GetComponent<Agent>().agentInternalState.GetStateDictionary())
         {
                 GUILayout.Label("=====  " + sg.Key);
         }

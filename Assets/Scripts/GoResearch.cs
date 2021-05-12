@@ -5,7 +5,7 @@ using GOAP;
 
 public class GoResearch : Action
 {
-    public override bool PrePerform()
+    public override bool OnActionEnter()
     {
         target = World.Instance.GetQueue("Office").RemoveResource();
         if (target == null)
@@ -15,7 +15,7 @@ public class GoResearch : Action
         return true;
     }
 
-    public override bool PostPerform()
+    public override bool OnActionExit()
     {
         World.Instance.GetQueue("Office").AddResource(target);
         inventory.RemoveItem(target);

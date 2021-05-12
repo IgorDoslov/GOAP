@@ -5,7 +5,7 @@ using GOAP;
 
 public class CleanWee : Action
 {
-    public override bool PrePerform()
+    public override bool OnActionEnter()
     {
         target = World.Instance.GetQueue("Wee").RemoveResource();
         if (target == null)
@@ -17,7 +17,7 @@ public class CleanWee : Action
         return true;
     }
 
-    public override bool PostPerform()
+    public override bool OnActionExit()
     {
         inventory.RemoveItem(target);
         Destroy(target);

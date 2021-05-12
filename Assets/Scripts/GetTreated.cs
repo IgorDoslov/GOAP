@@ -5,7 +5,7 @@ using GOAP;
 
 public class GetTreated : Action
 {
-    public override bool PrePerform()
+    public override bool OnActionEnter()
     {
         target = inventory.FindItemWithTag("Cubicle");
         if (target == null)
@@ -13,7 +13,7 @@ public class GetTreated : Action
         return true;
     }
 
-    public override bool PostPerform()
+    public override bool OnActionExit()
     {
         World.Instance.GetStateCollection().ModifyState("Treated", 1);
         internalState.ModifyState("isCured", 1);

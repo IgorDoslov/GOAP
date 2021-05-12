@@ -20,7 +20,7 @@ public class Patient : Agent
 
     void NeedRelief()
     {
-        beliefs.ModifyState("busting", 0);
+        agentInternalState.ModifyState("busting", 0);
         Invoke("NeedRelief", Random.Range(2, 5));
     }
 }

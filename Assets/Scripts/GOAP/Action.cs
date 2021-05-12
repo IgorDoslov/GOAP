@@ -10,6 +10,7 @@ namespace GOAP
         public string actionName = "Action";
         public float cost = 1.0f;
         public GameObject target;
+        [TagSelector]
         public string targetTag;
         public float duration = 0;
         public State[] preConditions;
@@ -20,6 +21,7 @@ namespace GOAP
         public Dictionary<string, int> effectsDic;
 
         public Inventory inventory;
+
         public StateCollection internalState;
 
         public bool running = false;
@@ -46,8 +48,8 @@ namespace GOAP
                     effectsDic.Add(w.key, w.value);
                 }
 
-            inventory = this.GetComponent<Agent>().inventory;
-            internalState = this.GetComponent<Agent>().beliefs;
+            inventory = GetComponent<Agent>().inventory;
+            internalState = GetComponent<Agent>().agentInternalState;
         }
 
         public bool IsAchievable()
@@ -67,8 +69,8 @@ namespace GOAP
             return true;
         }
 
-        public abstract bool PrePerform();
-        public abstract bool PostPerform();
+        public abstract bool OnActionEnter();
+        public abstract bool OnActionExit();
 
 
     }

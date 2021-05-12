@@ -14,16 +14,11 @@ namespace GOAP
         {
             [TagSelector]
             public string tag;
-            public string modifier;
+            public string objectQueue;
         }
 
-       // private static readonly World instance = new World();
         private static StateCollection worldStates;
-        //private static ResourceQueue patients;
-        //private static ResourceQueue cubicles;
-        //private static ResourceQueue offices;
-        //private static ResourceQueue toilets;
-        //private static ResourceQueue wees;
+
         private static Dictionary<string, ResourceQueue> resources = new Dictionary<string, ResourceQueue>();
 
         public List<InspectorResource> resourceConfig = new List<InspectorResource>();
@@ -34,41 +29,23 @@ namespace GOAP
 
             foreach (var r in resourceConfig)
             {
-                var res = new ResourceQueue(r.tag,r.modifier,worldStates);
+                var res = new ResourceQueue(r.tag,r.objectQueue, worldStates);
                 resources.Add(r.tag, res);
             }
-
-            //var patients = new ResourceQueue("", "", worldSt);
-            //resources.Add("patients", patients);
-
-            //var cubicles = new ResourceQueue("Cubicle", "FreeCubicle", worldSt);
-            //resources.Add("cubicles", cubicles);
-
-            //var offices = new ResourceQueue("Office", "FreeOffice", worldSt);
-            //resources.Add("offices", offices);
-
-            //var toilets = new ResourceQueue("Toilet", "FreeToilet", worldSt);
-            //resources.Add("toilets", toilets);
-
-            //var wees = new ResourceQueue("Wee", "FreeWee", worldSt);
-            //resources.Add("wees", wees);
 
             Time.timeScale = 5;
         }
 
-        private static World instance;
-
         void Awake()
         {
 
-            if (instance == null)
+            if (Instance == null)
             {
 
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
 
                 //Rest of your Awake code
-
             }
             else
             {
@@ -81,10 +58,7 @@ namespace GOAP
             return resources[type];
         }
 
-        public static World Instance
-        {
-            get { return instance; }
-        }
+        public static World Instance { get; private set; }
 
         public StateCollection GetStateCollection()
         {

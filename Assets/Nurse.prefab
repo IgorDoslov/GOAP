@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 352052380760787209}
   - component: {fileID: 352052380760787214}
   - component: {fileID: 1472624437}
-  - component: {fileID: 1423586384}
   m_Layer: 0
   m_Name: Nurse
   m_TagString: Untagged
@@ -125,10 +124,6 @@ MonoBehaviour:
     priority: 3
   - goal: rested
     value: 1
-    shouldRemove: 0
-    priority: 1
-  - goal: relief
-    value: 5
     shouldRemove: 0
     priority: 1
   currentAction: {fileID: 0}
@@ -271,22 +266,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisAgent: {fileID: 352052380760787210}
---- !u!114 &1423586384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352052380760787216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6466bc1ffdefb5347945b0206f8210c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: busting
-  stateStrength: 10
-  stateDecayRate: 2
-  resourcePrefab: {fileID: 1230992707977088803, guid: 2bb5490d154acba47b2569c64a196cfc, type: 3}
-  queueName: Wee
-  worldState: FreeWee
-  action: {fileID: 352052380760787214}

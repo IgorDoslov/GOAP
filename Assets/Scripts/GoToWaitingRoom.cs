@@ -5,12 +5,12 @@ using GOAP;
 
 public class GoToWaitingRoom : Action
 {
-    public override bool PrePerform()
+    public override bool OnActionEnter()
     {
         return true;
     }
 
-    public override bool PostPerform()
+    public override bool OnActionExit()
     {
         World.Instance.GetStateCollection().ModifyState("Waiting", 1);
         World.Instance.GetQueue("Patient").AddResource(gameObject);

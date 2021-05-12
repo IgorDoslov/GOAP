@@ -5,12 +5,12 @@ using GOAP;
 
 public class Rest : Action
 {
-    public override bool PrePerform()
+    public override bool OnActionEnter()
     {
         return true;
     }
 
-    public override bool PostPerform()
+    public override bool OnActionExit()
     {
         internalState.RemoveState("exhausted");
         return true;

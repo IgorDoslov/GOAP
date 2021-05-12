@@ -244,6 +244,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 352052380760787210, guid: 2a904a7d75e18c541b38ad503a5395d9, type: 3}
+      propertyPath: myGoals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 352052380760787210, guid: 2a904a7d75e18c541b38ad503a5395d9, type: 3}
+      propertyPath: myGoals.Array.data[2].goal
+      value: relief
+      objectReference: {fileID: 0}
+    - target: {fileID: 352052380760787210, guid: 2a904a7d75e18c541b38ad503a5395d9, type: 3}
+      propertyPath: myGoals.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 352052380760787210, guid: 2a904a7d75e18c541b38ad503a5395d9, type: 3}
+      propertyPath: myGoals.Array.data[2].priority
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 352052380760787216, guid: 2a904a7d75e18c541b38ad503a5395d9, type: 3}
       propertyPath: m_Name
       value: Nurse (1)

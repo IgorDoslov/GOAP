@@ -18,13 +18,13 @@ public class Doctor : Agent
 
     void GetTired()
     {
-        beliefs.ModifyState("exhausted", 0);
+        agentInternalState.ModifyState("exhausted", 0);
         Invoke("GetTired", Random.Range(10, 20));
     }
 
     void NeedRelief()
     {
-        beliefs.ModifyState("busting", 0);
+        agentInternalState.ModifyState("busting", 0);
         Invoke("NeedRelief", Random.Range(2, 5));
     }
 
