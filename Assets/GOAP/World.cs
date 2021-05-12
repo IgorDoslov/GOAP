@@ -33,7 +33,6 @@ namespace GOAP
                 resources.Add(r.tag, res);
             }
 
-            Time.timeScale = 5;
         }
 
         void Awake()
