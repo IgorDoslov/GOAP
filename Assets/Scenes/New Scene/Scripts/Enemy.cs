@@ -13,6 +13,8 @@ public class Enemy : Agent
     [HideInInspector]
     public float thirstTimer;
 
+    public GameObject player;
+
     new void Start()
     {
         base.Start();
@@ -33,6 +35,19 @@ public class Enemy : Agent
         if (thirstTimer >= thirstTime && !agentInternalState.HasState("Hungry"))
         {
             GetThirsty();
+        }
+
+        float dist = Vector3.Distance(transform.position, player.transform.position);
+        Debug.Log(dist);
+        if (dist <= 5f)
+        {
+            StopAction();
+            if (!agentInternalState.HasState("Run"))
+                agentInternalState.ModifyInternalState("Run");
+        }
+        else
+        {
+            agentInternalState.RemoveState("Run");
         }
     }
 

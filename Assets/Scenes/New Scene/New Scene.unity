@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2047549983}
-  offset: {x: 0, y: 50, z: -10}
+  offset: {x: 0, y: 30, z: -10}
 --- !u!1 &514320341
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 791065146}
   - component: {fileID: 791065149}
   - component: {fileID: 791065150}
+  - component: {fileID: 791065151}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -647,6 +648,8 @@ MonoBehaviour:
   preConditions:
   - key: Thirsty
     value: 0
+  - key: Safe
+    value: 0
   afterEffects:
   - key: SatisfyThirst
     value: 0
@@ -671,6 +674,8 @@ MonoBehaviour:
   duration: 0
   preConditions:
   - key: Hungry
+    value: 0
+  - key: Safe
     value: 0
   afterEffects:
   - key: SatisfyHunger
@@ -704,11 +709,16 @@ MonoBehaviour:
     value: 0
     shouldRemove: 0
     priority: 1
+  - goal: Escape
+    value: 0
+    shouldRemove: 0
+    priority: 5
   currentAction: {fileID: 0}
   hungerTime: 30
   hungerTimer: 0
   thirstTime: 30
   thirstTimer: 0
+  player: {fileID: 2047549983}
 --- !u!114 &791065149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,6 +756,29 @@ MonoBehaviour:
     value: 0
   afterEffects:
   - key: Rest
+    value: 0
+  navAgent: {fileID: 0}
+  running: 0
+--- !u!114 &791065151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791065140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6190bd7dd22ac443b3bd771cf9b3815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Action
+  cost: 1
+  target: {fileID: 0}
+  targetTag: Home
+  duration: 0
+  preConditions: []
+  afterEffects:
+  - key: Safe
     value: 0
   navAgent: {fileID: 0}
   running: 0
@@ -954,7 +987,7 @@ GameObject:
   - component: {fileID: 2047549984}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -971,7 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b589b965f20d1fb4f92abec54e147aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 15
+  playerSpeed: 10
   jumpHeight: 1
   gravityValue: -9.81
 --- !u!136 &2047549985
