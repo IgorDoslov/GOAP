@@ -136,9 +136,12 @@ namespace GOAP
         }
         public void StopAction()
         {
-            currentAction.running = false;
-            currentAction = null;
-            actionQueue = null;
+            if (currentAction != null)
+            {
+                currentAction.running = false;
+                currentAction = null;
+                actionQueue = null;
+            }
         }
     }
 }

@@ -27,27 +27,33 @@ public class Enemy : Agent
         hungerTimer += Time.deltaTime;
         thirstTimer += Time.deltaTime;
 
-        if (hungerTimer >= hungerTime && !agentInternalState.HasState("Hungry"))
-        {
-            GetHungry();
-        }
 
-        if (thirstTimer >= thirstTime && !agentInternalState.HasState("Hungry"))
-        {
-            GetThirsty();
-        }
 
         float dist = Vector3.Distance(transform.position, player.transform.position);
         Debug.Log(dist);
-        if (dist <= 5f)
+        if (dist <= 20f)
         {
-            StopAction();
             if (!agentInternalState.HasState("Run"))
+            {
                 agentInternalState.ModifyInternalState("Run");
+                StopAction();
+            }
         }
         else
         {
             agentInternalState.RemoveState("Run");
+
+
+            if (hungerTimer >= hungerTime && !agentInternalState.HasState("Hungry"))
+            {
+                GetHungry();
+            }
+
+            if (thirstTimer >= thirstTime && !agentInternalState.HasState("Thirsty"))
+            {
+                GetThirsty();
+            }
+
         }
     }
 
