@@ -37,6 +37,11 @@ public class Enemy : Agent
             {
                 agentInternalState.ModifyInternalState("Run");
                 StopAction();
+                if (inventory.FindItemWithTag("Food"))
+                {
+                    World.Instance.GetQueue("Food").AddResource(inventory.FindItemWithTag("Food"));
+                    inventory.RemoveItem(inventory.FindItemWithTag("Food"));
+                }
             }
         }
         else

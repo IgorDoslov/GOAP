@@ -177,7 +177,7 @@ MonoBehaviour:
   cost: 1
   target: {fileID: 0}
   targetTag: Food
-  duration: 0
+  duration: 10
   preConditions:
   - key: Hungry
     value: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   cost: 1
   target: {fileID: 0}
   targetTag: Water
-  duration: 0
+  duration: 10
   preConditions:
   - key: Thirsty
     value: 0
