@@ -42,6 +42,11 @@ public class Enemy : Agent
                     World.Instance.GetQueue("Food").AddResource(inventory.FindItemWithTag("Food"));
                     inventory.RemoveItem(inventory.FindItemWithTag("Food"));
                 }
+                if (inventory.FindItemWithTag("Water"))
+                {
+                    World.Instance.GetQueue("Water").AddResource(inventory.FindItemWithTag("Water"));
+                    inventory.RemoveItem(inventory.FindItemWithTag("Water"));
+                }
             }
         }
         else
